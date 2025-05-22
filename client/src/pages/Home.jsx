@@ -10,7 +10,7 @@ const Home = () => {
 
   const getTutorials = async () => {
     try {
-      const { data } = await axios.get(process.env.REACT_APP_URL);
+      const { data } = await axios.get(process.env.REACT_APP_URL)
       setTutorials(data.result.rows);
     } catch (error) {
       console.log(error);

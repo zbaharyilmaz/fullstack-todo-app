@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const EditTutorial = ({ editData, getTutorials }) => {
   const [title, setTitle] = useState(editData.title);

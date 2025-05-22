@@ -13,12 +13,12 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-require('express-async-errors');
+require("express-async-errors");
 
 // Accept json data:
-app.use(express.json())
+app.use(express.json());
 // Cors
-const cors= require("cors")
+const cors = require("cors");
 // Cors
 // {
 //     origin: '*', // Allow all origins
@@ -30,20 +30,26 @@ const cors= require("cors")
 //     optionsSuccessStatus: 204, // Response status code for successful OPTIONS
 //     maxAge: undefined // Don't cache preflight responses
 //   }
-app.use(cors({
-    origin: ["htttps://example.com", "http://localhost:3000"] 
-}))  //! cors ayarı yapıldı.
+app.use(
+  cors({
+    origin: [
+      //"https://example.com",
+      "http://localhost:3000",
+      "https://fullstack-todo-app-jade.vercel.app/",
+    ],
+  })
+); //! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
 /* ------------------------------------------------------- */
 // ROUTERS:
 
-app.all('/', (req, res) => {
-    res.send('WELCOME TO TODO API')
+app.all("/", (req, res) => {
+  res.send("WELCOME TO TODO API");
 });
 
-app.use(require('./routes/todo.router'));
+app.use(require("./routes/todo.router"));
 
 /* ------------------------------------------------------- */
 // ErrorHandler
-app.use(require('./middlewares/errorHandler'));
+app.use(require("./middlewares/errorHandler"));
 /* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
