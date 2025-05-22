@@ -25,19 +25,19 @@ const AddTutorial = ({ getTutorials }) => {
 
   return (
     <div className="container text-center mt-4">
-      <h1 className="display-6 text-danger">Add Your Tutorial</h1>
+      <h1 className="display-5 text-success m-5">My Tasks</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
-            Title
+            Task
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
             id="title"
-            placeholder="Enter your title"
+            placeholder="Enter your task"
             required
           />
         </div>
@@ -47,7 +47,7 @@ const AddTutorial = ({ getTutorials }) => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             id="desc"
@@ -55,8 +55,8 @@ const AddTutorial = ({ getTutorials }) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-danger mb-4">
-          Submit
+        <button type="submit" className="btn btn-lg btn-success m-4">
+          Add
         </button>
       </form>
     </div>

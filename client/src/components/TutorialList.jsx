@@ -5,20 +5,6 @@ import EditTutorial from "./EditTutorial";
 import { useState } from "react";
 
 const TutorialList = ({ tutorials, getTutorials }) => {
-  //* mock data
-  // const tutorials = [
-  //   {
-  //     id: 1,
-  //     title: "JS",
-  //     description: "JS is a programming language",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "React",
-  //     description: "JS library for UI design",
-  //   },
-  // ];
-
   const [editData, setEditData] = useState("");
   const deleteTutorials = async (id) => {
     try {
@@ -35,7 +21,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
         <thead>
           <tr>
             <th scope="col">#id</th>
-            <th scope="col">Title</th>
+            <th scope="col">Task</th>
             <th scope="col">Description</th>
             <th scope="col" className="text-center">
               Edit
@@ -62,7 +48,7 @@ const TutorialList = ({ tutorials, getTutorials }) => {
                   <AiFillDelete
                     size={22}
                     type="button"
-                    className="text-danger "
+                    className="text-success "
                     onClick={() => deleteTutorials(id)}
                   />
                 </td>

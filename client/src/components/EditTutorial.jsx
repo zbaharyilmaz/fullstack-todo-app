@@ -1,22 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-//? https://react.dev/reference/react/useState#usestate
-//! State degiskeninin degeri, 1.render ile initialState
-//! parametresinin ilk degerini alir. Dolayisiyle bu durumda
-//! prop'tan gelen ilk deger state'e aktarilir.
-//! Sonradan degisen props degerleri useState'e aktarilmaz.
-//! Eger props'tan gelen degerleri her degisimde useState'e
-//! aktarmak istersek useEffect hook'unu componentDidUpdate
-//! gibi kullanabiriz.
-
 const EditTutorial = ({ editData, getTutorials }) => {
   const [title, setTitle] = useState(editData.title);
   const [description, setDescription] = useState(editData.description);
   console.log(editData);
   console.log(title, description);
 
-  //? componentDidUpdate
   useEffect(() => {
     setTitle(editData.title);
     setDescription(editData.description);
@@ -91,7 +81,7 @@ const EditTutorial = ({ editData, getTutorials }) => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-danger mb-4"
+                  className="btn btn-success mb-4"
                   data-bs-dismiss="modal"
                 >
                   Submit
