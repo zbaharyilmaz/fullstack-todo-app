@@ -1,5 +1,5 @@
 {
-  "name": "10-models_sequelize_todo",
+  "name": "sequelize_todo",
   "version": "1.0.0",
   "description": "## What? Why?",
   "main": "app.js",
