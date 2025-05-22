@@ -31,7 +31,7 @@ const cors= require("cors")
 //     maxAge: undefined // Don't cache preflight responses
 //   }
 app.use(cors({
-    origin: ["htttps://example.com", "http://localhost:3000"] 
+    origin: ["htttps://example.com", "http://localhost:3000", "https://fullstack-todo-app-vi3n.onrender.com/todos/"] 
 }))  //! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
 /* ------------------------------------------------------- */
 // ROUTERS:
