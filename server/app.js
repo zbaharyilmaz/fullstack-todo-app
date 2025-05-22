@@ -31,7 +31,7 @@ const cors= require("cors")
 //     maxAge: undefined // Don't cache preflight responses
 //   }
 app.use(cors({
-    origin: ["htttps://example.com", "http://localhost:3000", "https://fullstack-todo-app-jade.vercel.app/"] 
+    origin: ["htttps://example.com", "http://localhost:3000"] 
 }))  //! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
 /* ------------------------------------------------------- */
 // ROUTERS:
