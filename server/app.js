@@ -33,12 +33,16 @@ const cors = require("cors");
 app.use(
   cors({
     origin: [
-      //"https://example.com",
       "http://localhost:3000",
-      "https://fullstack-todo-app-jade.vercel.app/",
+      "https://fullstack-todo-app-jade.vercel.app" 
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
-); //! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
+);
+//! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
+app.options('*', cors()); 
+
 /* ------------------------------------------------------- */
 // ROUTERS:
 
