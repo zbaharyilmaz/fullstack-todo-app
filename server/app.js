@@ -13,6 +13,12 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
+// Validate required environment variables
+if (!process.env.SQLITE) {
+  console.error("Error: SQLITE environment variable is required");
+  process.exit(1);
+}
+
 require("express-async-errors");
 
 // Accept json data:
@@ -32,16 +38,13 @@ const cors = require("cors");
 //   }
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://fullstack-todo-app-jade.vercel.app" 
-    ],
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    credentials: false,
   })
 );
 //! cors ayarı yapıldı. FRONTEND URL İNİ DE EKLE.
-app.options('*', cors()); 
+app.options("*", cors());
 
 /* ------------------------------------------------------- */
 // ROUTERS:
@@ -50,10 +53,13 @@ app.all("/", (req, res) => {
   res.send("WELCOME TO TODO API");
 });
 
-app.use(require("./routes/todo.router"));
+app.use("/api", require("./routes/todo.router"));
 
 /* ------------------------------------------------------- */
 // ErrorHandler
 app.use(require("./middlewares/errorHandler"));
 /* ------------------------------------------------------- */
-app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
+app.listen(PORT, () => {
+  console.log(`Server running on: http://127.0.0.1:${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+});

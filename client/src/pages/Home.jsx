@@ -5,15 +5,20 @@ import axios from "axios";
 
 const Home = () => {
   const [tutorials, setTutorials] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  console.log(tutorials);
+  // Removed console.log for production
 
   const getTutorials = async () => {
     try {
-      const { data } = await axios.get(process.env.REACT_APP_URL)
+      setLoading(true);
+      const apiUrl = "http://localhost:8000/api/tutorials";
+      const { data } = await axios.get(apiUrl);
       setTutorials(data.result.rows);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching tutorials:", error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -22,8 +27,12 @@ const Home = () => {
 
   return (
     <>
-      <AddTutorial getTutorials={getTutorials} />
-      <TutorialList tutorials={tutorials} getTutorials={getTutorials} />
+      <AddTutorial getTutorials={getTutorials} loading={loading} />
+      <TutorialList
+        tutorials={tutorials}
+        getTutorials={getTutorials}
+        loading={loading}
+      />
     </>
   );
 };

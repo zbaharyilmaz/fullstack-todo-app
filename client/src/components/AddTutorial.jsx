@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 
-const AddTutorial = ({ getTutorials }) => {
+const AddTutorial = ({ getTutorials, loading }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(title, description);
+    // Form submission handled
     postTutorial({ title, description });
     setTitle("");
     setDescription("");
@@ -15,9 +15,10 @@ const AddTutorial = ({ getTutorials }) => {
 
   const postTutorial = async (newTutorial) => {
     try {
-      await axios.post(process.env.REACT_APP_URL, newTutorial);
+      const apiUrl = "http://localhost:8000/api/tutorials";
+      await axios.post(apiUrl, newTutorial);
     } catch (error) {
-      console.log(error);
+      console.error("Error creating tutorial:", error);
     } finally {
       getTutorials();
     }
@@ -55,8 +56,23 @@ const AddTutorial = ({ getTutorials }) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-lg btn-success m-4">
-          Add
+        <button
+          type="submit"
+          className="btn btn-lg btn-success m-4"
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Adding...
+            </>
+          ) : (
+            "Add"
+          )}
         </button>
       </form>
     </div>

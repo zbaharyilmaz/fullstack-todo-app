@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 const EditTutorial = ({ editData, getTutorials }) => {
   const [title, setTitle] = useState(editData.title);
   const [description, setDescription] = useState(editData.description);
-  console.log(editData);
-  console.log(title, description);
+  // Debug logs removed for production
 
   useEffect(() => {
     setTitle(editData.title);
@@ -19,9 +18,10 @@ const EditTutorial = ({ editData, getTutorials }) => {
 
   const editTutorials = async (tutorial) => {
     try {
-      await axios.put(`${process.env.REACT_APP_URL}${editData.id}/`, tutorial);
+      const apiUrl = "http://localhost:8000/api/tutorials";
+      await axios.put(`${apiUrl}/${editData.id}/`, tutorial);
     } catch (error) {
-      console.log(error);
+      console.error("Error updating tutorial:", error);
     } finally {
       getTutorials();
     }
